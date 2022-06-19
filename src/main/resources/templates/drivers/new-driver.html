@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<br>
+<div class="container">
+
+
+    <form th:action="@{/drivers/save}" th:object="${driver}" method="POST">
+
+
+        <input type="hidden" th:field="${driver.id}"/>
+
+        <div class="form-group row">
+            <input type="text" placeholder="Name" th:field="${driver.name}">
+            <span style="color:red" th:if="${#fields.hasErrors('name')}"
+                  th:errors="${driver.name}">
+			</span>
+        </div>
+
+        <div class="form-group row">
+            <input type="number" placeholder="Age" th:field="${driver.age}">
+            <span style="color:red" th:if="${#fields.hasErrors('age')}"
+                  th:errors="${driver.age}">
+			</span>
+        </div>
+
+        <div class="form-group row">
+            <input type="text" placeholder="Address" th:field="${driver.address}">
+            <span style="color:red" th:if="${#fields.hasErrors('address')}"
+                  th:errors="${driver.address}">
+			</span>
+        </div>
+
+        <div class="form-group row">
+            <select th:field="${driver.status}">
+                <option th:value="ACTIVE"> ACTIVE </option>
+                <option th:value="NOT_ACTIVE"> NOT ACTIVE </option>
+            </select>
+        </div>
+
+
+        Driver Start Time:
+        <div class="form-group row">
+            <input id="dp3" type="datetime-local" class="mb-4 col-2 col-xs-4" value="Start Time" th:field="${driver.startTime}">
+        </div>
+
+
+        Driver End Time:
+        <div class="form-group row">
+            <input id="dp4" type="datetime-local" class="mb-4 col-2 col-xs-4" value="End Time" th:field="${driver.endTime}">
+        </div>
+
+        <div class="form-group row">
+            <input type="text" placeholder="Current Location" th:field="${driver.currentLocation}">
+            <span style="color:red" th:if="${#fields.hasErrors('currentLocation')}"
+                  th:errors="${driver.currentLocation}">
+			</span>
+        </div>
+
+        <button class="btn btn-info col-2" type="submit">Enter Driver</button>
+
+    </form>
+</div>
+
+</body>
+
+</html>
